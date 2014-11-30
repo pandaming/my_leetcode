@@ -35,37 +35,39 @@ struct TreeLinkNode{
 	TreeLinkNode *next;
 };
 
-class Solution{
+class Solution {
 public:
-	void connect(TreeLinkNode *root){
-		if(root == NULL) return NULL;
-		vector<TreeLinkNode *> stack1;
-		vector<TreeLinkNode* > stack2;
+     void connect(TreeLinkNode *root) {
+        if(root == NULL) return;
+        vector<TreeLinkNode*> stack_1;
+        vector<TreeLinkNode*> stack_2;
 
-		stack1.push_back(root);
-		while(stack1.size() > 0){
-			while(stack1.size() > 0){
-				TreeLinkNode *node = stack1.back();
-				stack1.pop_back();
-				if(node->right)
-					stack2.push_back(node->right);
-				if(node->left)
-					stack2.push_back(node->left;)
-			}
+        stack_1.push_back(root);
+        while(stack_1.size()>0){
+        	TreeLinkNode * left_node = stack_1.back();
+        	stack_1.pop_back();
+        	stack_2.push_back(left_node);
+        	while(stack_1.size()>0){
+        		TreeLinkNode* right_node = stack_1.back();
+        		stack_2.push_back(right_node);
+        		left_node->next = right_node;
+        		left_node = right_node;
+        		stack_1.pop_back();
+        	}
+        	left_node->next = NULL;
 
-			TreeLinkNode *left_node = stack2.back();
-			stack2.pop_back();
-			stack1.push_back(left_node);
-			while(stack2.size() > 0){
-				TreeLinkNode *right_node = stack2.back();
-				stack2.pop_back();
-				stack1.push_back(right_node);
-				left_node->next = right_node;
-				left_node = right_node;
-			}
-			left_node->next = NULL;
-		}
-	}
+        	while(stack_2.size()>0){
+        		TreeLinkNode* node = stack_2.back();
+        		stack_2.pop_back();
+        		if(node->right){
+        			stack_1.push_back(node->right);
+        		}
+        		if(node->left){
+        			stack_1.push_back(node->left);
+        		}
+        	}
+        }
+    }
 };
 
 

@@ -6,6 +6,16 @@
 class Solution{
 public:
 	int minDepth(TreeNode *root){
-		
+		if(root == NULL) return 0;
+		if(root->left == NULL && root->right == NULL) return 1;
+		int leftDepth = 10000;
+		if(root->left){
+			leftDepth = minDepth(root->left);
+		}	
+		int rightDepth = 10000;
+		if(root->right){
+			rightDepth = minDepth(root->right);
+		}
+		return leftDepth<rightDepth ?leftDepth+1 : rightDepth+1;
 	}
-}
+};
