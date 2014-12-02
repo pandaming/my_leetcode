@@ -56,4 +56,86 @@ public:
         last->next = NULL;
         return NULL;
     }
+
+
+    ListNode *getIntersectionNode1(ListNode *headA, ListNode *headB){
+        if(headA == NULL || headB == NULL) return NULL;
+        int lenA= ListLen(headA);
+        int lenB = ListLen(headB);
+        int count = (lenA > lenB)? (lenA - lenB): (lenB - lenA);
+        ListNode *longHead, *shortHead;
+        if(lenA >= lenB){
+            longHead = headA;
+            shortHead = headB;
+        }else{
+            longHead = headB;
+            shortHead = headA;
+        }
+
+        while(count){
+            longHead = longHead->next;
+            count--;
+        }
+
+        while(longHead != NULL){
+            if(longHead == shortHead){
+                return longHead;
+            }
+            longHead = longHead->next;
+            shortHead = shortHead->next;
+        }
+        return NULL;
+    };
+
+    int ListLen(ListNode *head){
+        int n = 0;
+        while(head != NULL){
+            n = n + 1;
+            head = head->next;
+        }
+        return n;
+    }
+
+};
+
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB){
+    if(headA == NULL || headB == NULL) return NULL;
+    int lenA= ListLen(headA);
+    int lenB = ListLen(headB);
+    int count = (lenA > lenB)? (lenA - lenB): (lenB - lenA);
+    ListNode *longHead, *shortHead;
+    if(lenA >= lenB){
+        longHead = headA;
+        shortHead = headB;
+    }else{
+        longHead = headB;
+        shortHead = headA;
+    }
+
+    while(count){
+        longHead = longHead->next;
+        count--;
+    }
+
+    while(longHead != NULL){
+        if(longHead == shortHead){
+            return longHead;
+        }
+        longHead = longHead->next;
+        shortHead = shortHead->next;
+    }
+    return NULL;
+};
+
+int ListLen(ListNode *head){
+    int n = 0;
+    while(head != NULL){
+        n = n + 1;
+        head = head->next;
+    }
+    return n;
+}
 };
