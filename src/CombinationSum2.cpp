@@ -14,6 +14,7 @@
 // [2, 6] 
 // [1, 1, 6] 
 // just for github test!
+// for the second test!
 
 class Solution {
 public:

@@ -3,11 +3,17 @@
 // Design an algorithm to find the maximum profit. You may complete as many transactions as you like 
 // (ie, buy one and sell one share of the stock multiple times). However, you may not engage in 
 // multiple transactions at the same time (ie, you must sell the stock before you buy again).
-
+// for the seconde test!
 
 class Solution {
 public:
     int maxProfit(vector<int> &prices) {
-        
+        if(prices.size() == 0) return 0;
+        int profit = 0;
+
+        for(int i=0;i<prices.size()-1; i++){
+        	if(prices[i] < prices[i+1]) price += prices[i+1] - prices[i];
+        }
+        return profit;
     }
 };
